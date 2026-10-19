@@ -64,7 +64,35 @@ interface Vlan1
  shutdown
 ```
 
-### S1 / S2 — pending ⏳
+### S1 — running-config captured 2026-10-19 ✅
+
+IOS 15.0 · hostname S1 · running-config 1173 bytes · details below reconstructed
+from the captured output.
+
+```
+hostname S1
+!
+spanning-tree mode pvst
+!
+interface FastEthernet0/1
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport mode access
+ switchport access vlan 10
+!
+interface GigabitEthernet0/1
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ shutdown
+```
+
+Note: Gi0/1 is trunk-configured — likely the R1 uplink, but confirm whether
+it's actually connected or just configured.
+
+### S2 — pending ⏳
 
 ```
 ! TODO: full running-configs pending capture
@@ -116,7 +144,8 @@ VLAN's gateway lives.
 
 - [x] Full `show running-config` from R1 (captured 2026-10-19)
 - [x] R1 interface status (captured 2026-10-19 — parent + both subinterfaces up/up)
-- [ ] Full `show running-config` from S1 and S2 (passwords stripped)
+- [x] Full `show running-config` from S1 (captured 2026-10-19)
+- [ ] Full `show running-config` from S2 (passwords stripped)
 - [ ] `show vlan brief` and `show interfaces trunk` from both switches
 - [ ] R1 interface status (`show ip interface brief`)
 - [ ] Final inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
