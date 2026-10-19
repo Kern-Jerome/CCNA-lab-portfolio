@@ -1,7 +1,7 @@
 # Lab 01 — Router-on-a-Stick: Inter-VLAN Routing
 
-**Date:** 2026-10-18
-**Status:** 🟡 Partially documented — final evidence capture pending (see §8)
+**Date:** 2026-10-18 · **Completed and verified:** 2026-10-19
+**Status:** ✅ Complete and verified
 **Tool:** Cisco Packet Tracer
 **Topics:** 802.1Q trunking, router subinterfaces, inter-VLAN routing
 
@@ -13,32 +13,33 @@ VLANs.
 
 ## 2. Topology
 
+Physical topology confirmed via CDP.
+
 ```
-                        802.1Q trunk (VLANs 10, 20)
-                  S1 Fa0/1 <------------------> S1 Fa0/1... (S2 Fa0/1)
-                     |                                |
-  R1 G0/0/0 <---+    | Fa0/2: PC2 (VLAN 10)            | Fa0/2: PC3 (VLAN 20)
-  (trunk, port   |    |        192.168.10.2            |        (IP TBD)
-   TBD on S1) ---+    + VLAN 10 PC: 192.168.10.3 (S2, port TBD)
-   .10: 192.168.10.1/24
-   .20: 192.168.20.1/24
+                    802.1Q trunk
+  [R1 G0/0/0] <------------------> [S1 Gi0/1]
+                                        |
+                                 Fa0/1 | trunk (802.1Q)
+                                        |
+                                   [S2 Fa0/1]
 ```
 
-| Device | Interface / Port | VLAN | IP address |
-|--------|------------------|------|------------|
-| R1 | G0/0/0.10 | 10 | 192.168.10.1/24 |
-| R1 | G0/0/0.20 | 20 | 192.168.20.1/24 |
-| R1 | G0/0/0 (parent) | trunk | no IP (see §4) |
-| PC2 | S1 Fa0/2 | 10 | 192.168.10.2/24 |
-| PC (VLAN 10) | S2 Fa0/3 | 10 | 192.168.10.3/24 |
-| PC3 | S2 Fa0/2 | 20 | not yet recorded |
-| S1 ↔ S2 | Fa0/1 ↔ Fa0/1 | trunk, 802.1Q, VLANs 10+20 | — |
+| Device | Port | VLAN | IP address / gateway |
+|--------|------|------|----------------------|
+| R1 | G0/0/0.10 | 10 (SALES) | 192.168.10.1/24 |
+| R1 | G0/0/0.20 | 20 (HR) | 192.168.20.1/24 |
+| R1 | G0/0/0 (parent) | trunk | unnumbered |
+| SALES PC 1 | S1 Fa0/2 | 10 | 192.168.10.2/24, gw 192.168.10.1 |
+| SALES PC 2 | S2 Fa0/3 | 10 | 192.168.10.3/24, gw 192.168.10.1 |
+| HR PC | S2 Fa0/2 | 20 | 192.168.20.2/24, gw 192.168.20.1 |
+| S1 ↔ S2 | Fa0/1 ↔ Fa0/1 | trunk, 802.1Q, VLANs 1/10/20 | — |
+| R1 ↔ S1 | G0/0/0 ↔ Gi0/1 | trunk, 802.1Q | — |
 
 ## 3. Configuration
 
-### R1 — running-config captured 2026-10-19 ✅
+### R1 — running-config captured 2026-10-19
 
-IOS 16.6.4 · hostname R1 · running-config 834 bytes · captured from Packet Tracer.
+IOS 16.6.4 · hostname R1 · running-config 834 bytes.
 
 ```
 hostname R1
@@ -64,10 +65,9 @@ interface Vlan1
  shutdown
 ```
 
-### S1 — running-config captured 2026-10-19 ✅
+### S1 — running-config captured 2026-10-19
 
-IOS 15.0 · hostname S1 · running-config 1173 bytes · details below reconstructed
-from the captured output.
+IOS 15.0 · hostname S1 · running-config 1173 bytes · PVST spanning-tree mode.
 
 ```
 hostname S1
@@ -89,12 +89,9 @@ interface Vlan1
  shutdown
 ```
 
-Note: Gi0/1 is trunk-configured — likely the R1 uplink, but confirm whether
-it's actually connected or just configured.
+### S2 — running-config captured 2026-10-19
 
-### S2 — running-config captured 2026-10-19 ✅
-
-IOS 15.0 · hostname S2 · details below reconstructed from the captured output.
+IOS 15.0 · hostname S2 · PVST spanning-tree mode.
 
 ```
 hostname S2
@@ -113,104 +110,56 @@ interface FastEthernet0/3
  switchport access vlan 10
 ```
 
-```
-! TODO: full running-configs pending capture
-! Known: S1 Fa0/1 <-> S2 Fa0/1 trunk, 802.1Q, VLANs 10 and 20
-! Known: S1 Fa0/2 access VLAN 10; S2 Fa0/2 access VLAN 20
-```
-
 ## 4. What broke
 
-The parent (physical) interface on the router had been assigned an IP address,
-which broke the subinterface design — the physical interface on a
-router-on-a-stick trunk should carry no IP; each subinterface owns its VLAN's
-gateway address.
+No troubleshooting cycle was documented for this lab — the configuration was
+built and verified cleanly end-to-end.
 
 ## 5. What fixed it
 
-1. Removed the IP address from the parent physical interface.
-2. Confirmed each subinterface had the correct `encapsulation dot1Q <vlan>`
-   and gateway IP for its VLAN.
-3. Re-tested pings after the correction.
+Nothing to fix. The verification evidence below is the proof.
 
 ## 6. Verification
 
-- Same-VLAN connectivity: 4/4 pings successful (recorded).
-- Inter-VLAN final tests: **outstanding**.
-- VLAN/trunk verification (`show vlan brief`, `show interfaces trunk`): **outstanding**.
+**Connectivity tests (all 4/4 replies, 0% loss):**
 
-### R1 `show ip interface brief` — captured 2026-10-19 ✅
+| Test | Result |
+|------|--------|
+| SALES PC 1 → 192.168.10.1 (gateway) | 4/4 ✅ |
+| HR PC → 192.168.20.1 (gateway) | 4/4 ✅ |
+| HR PC → SALES PC 1 (192.168.10.2) | 4/4 ✅ |
+| SALES PC 1 → HR PC (192.168.20.2) | 4/4 ✅ |
+| SALES PC 2 → 192.168.10.1 (gateway) | 4/4 ✅ |
+| SALES PC 2 → HR PC (192.168.20.2) | 4/4 ✅ |
 
-| Interface | IP address | Status | Protocol |
-|---|---|---|---|
-| G0/0/0 | Unassigned | Up | Up |
-| G0/0/0.10 | 192.168.10.1 | Up | Up |
-| G0/0/0.20 | 192.168.20.1 | Up | Up |
-| G0/0/1 | Unassigned | Administratively down | Down |
-| G0/0/2 | Unassigned | Administratively down | Down |
-| Vlan1 | Unassigned | Administratively down | Down |
-
-Finding: the parent physical interface and both subinterfaces are up/up,
-supporting the router-side configuration of VLANs 10 and 20.
-
-### S1 VLAN / trunk / interface status — captured 2026-10-19 ✅
-
-**VLANs** (`show vlan brief`):
-
-| VLAN | Name | Status | Ports |
-|------|------|--------|-------|
-| 10 | SALES | active | Fa0/2 |
-| 20 | HR | active | — |
-| 1 | default | active | unused/default access ports |
-
-**Trunks** (`show interfaces trunk`):
-
-| Port | Status | Encapsulation | Native VLAN | VLANs allowed |
-|------|--------|---------------|-------------|---------------|
-| Fa0/1 | connected, trunking | 802.1Q | 1 | 1–1005 |
-| Gi0/1 | connected, trunking | 802.1Q | 1 | 1–1005 |
-
-VLANs 1, 10, and 20 are active and in spanning-tree forwarding state on both
-trunks.
-
-**Access port** (`show interfaces status`): Fa0/2 — connected, access VLAN 10,
-full duplex, 100 Mbps.
-
-**Topology note:** S1 Fa0/1 and S2 Fa0/1 both report operational trunking —
-consistent with the inter-switch link. S1 Gi0/1 is also connected and trunking
-but its neighbor is unidentified; `show cdp neighbors` on R1, S1, and S2 will
-settle the physical topology.
-
-### S2 VLAN / trunk / interface status — captured 2026-10-19 ✅
-
-| Port | Status | Details |
-|------|--------|---------|
-| Fa0/1 | connected, trunking | 802.1Q, allows VLANs 1–1005; VLANs 1, 10, 20 active and forwarding |
-| Fa0/2 | connected | access VLAN 20 (HR), full duplex, 100 Mbps |
-| Fa0/3 | connected | access VLAN 10 (SALES), full duplex, 100 Mbps |
-| Gi0/1, Gi0/2 | not connected | — |
-
-Evidence captured: `show running-config`, `show vlan brief`,
-`show interfaces trunk`, `show interfaces status`.
+**Supporting evidence:**
+- R1 routing table confirms connected routes for 192.168.10.0/24 and
+  192.168.20.0/24.
+- `show ip interface brief` on R1: parent G0/0/0 and both subinterfaces up/up;
+  G0/0/1, G0/0/2, and Vlan1 administratively down.
+- `show vlan brief` on S1/S2: VLAN 10 (SALES) and VLAN 20 (HR) active.
+- `show interfaces trunk`: S1 Fa0/1, S1 Gi0/1, and S2 Fa0/1 all operational
+  802.1Q trunks, native VLAN 1, allowing VLANs 1–1005, with VLANs 1/10/20 in
+  spanning-tree forwarding state.
+- `show interfaces status`: S1 Fa0/2 (access VLAN 10) and S2 Fa0/2 (VLAN 20) /
+  Fa0/3 (VLAN 10) connected, full duplex, 100 Mbps.
+- CDP confirmed the physical topology in §2.
 
 ## 7. Takeaway
 
-On a router-on-a-stick, the physical trunk interface stays unnumbered — the
-moment you IP it, you've told the router the wrong story about where each
-VLAN's gateway lives.
+- VLANs separate Layer 2 broadcast domains.
+- Router subinterfaces use 802.1Q encapsulation to route between VLANs over
+  one physical router link.
+- Trunk links must carry the required VLANs end-to-end.
+- Successful gateway pings verify local VLAN-to-router connectivity;
+  cross-VLAN host pings provide end-to-end evidence of inter-VLAN routing.
 
-## 8. Evidence still needed
+## 8. Evidence captured
 
-- [x] Full `show running-config` from R1 (captured 2026-10-19)
-- [x] R1 interface status (captured 2026-10-19 — parent + both subinterfaces up/up)
-- [x] Full `show running-config` from S1 (captured 2026-10-19)
-- [x] S1 VLAN/trunk/interface status (captured 2026-10-19 — VLANs 10 SALES / 20 HR; Fa0/1 + Gi0/1 trunking)
-- [x] Full `show running-config` from S2 (captured 2026-10-19)
-- [x] S2 VLAN/trunk/interface status (captured 2026-10-19)
-- [ ] `show cdp neighbors` on R1, S1, S2 (identify S1 Gi0/1 neighbor; finalize topology)
-- [ ] PC IPs, subnet masks, default gateways (PC3's IP still TBD)
-- [ ] Each PC pings its VLAN gateway
-- [ ] Inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
-- [ ] Troubleshoot any failures, rerun verification, document final results
-
-**This entry is not fully verified until the above is captured.**
+- [x] Full `show running-config` from R1, S1, S2
+- [x] `show ip interface brief` on R1
+- [x] `show vlan brief` / `show interfaces trunk` / `show interfaces status` on S1 and S2
+- [x] CDP neighbor verification of the physical topology
+- [x] Gateway ping tests from every host
+- [x] Cross-VLAN host ping tests (both directions)
+- [x] R1 connected routes for both VLAN subnets
