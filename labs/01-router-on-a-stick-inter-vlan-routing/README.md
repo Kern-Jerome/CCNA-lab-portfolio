@@ -36,11 +36,13 @@ VLANs.
 
 ## 3. Configuration
 
-Recovered excerpts (post-fix state). Full running-configs still pending — see §8.
+### R1 — running-config captured 2026-10-19 ✅
 
-### R1
+IOS 16.6.4 · hostname R1 · running-config 834 bytes · captured from Packet Tracer.
 
 ```
+hostname R1
+!
 interface GigabitEthernet0/0/0
  no ip address
 !
@@ -51,9 +53,18 @@ interface GigabitEthernet0/0/0.10
 interface GigabitEthernet0/0/0.20
  encapsulation dot1Q 20
  ip address 192.168.20.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1
+ shutdown
+!
+interface GigabitEthernet0/0/2
+ shutdown
+!
+interface Vlan1
+ shutdown
 ```
 
-### S1 / S2
+### S1 / S2 — pending ⏳
 
 ```
 ! TODO: full running-configs pending capture
@@ -89,8 +100,10 @@ VLAN's gateway lives.
 
 ## 8. Evidence still needed
 
-- [ ] Full `show running-config` from R1, S1, and S2 (passwords stripped)
+- [x] Full `show running-config` from R1 (captured 2026-10-19)
+- [ ] Full `show running-config` from S1 and S2 (passwords stripped)
 - [ ] `show vlan brief` and `show interfaces trunk` from both switches
+- [ ] R1 interface status (`show ip interface brief`)
 - [ ] Final inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
 - [ ] PC3's IP address; S2 port for the 192.168.10.3 PC; R1↔S1 trunk port ID
 
