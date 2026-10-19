@@ -1,6 +1,7 @@
 # Lab 01 — Router-on-a-Stick: Inter-VLAN Routing
 
 **Date:** 2026-10-18
+**Status:** 🟡 Partially documented — final evidence capture pending (see §8)
 **Tool:** Cisco Packet Tracer
 **Topics:** 802.1Q trunking, router subinterfaces, inter-VLAN routing
 
@@ -12,17 +13,52 @@ VLANs.
 
 ## 2. Topology
 
-One router connected via a trunk link to a switch; hosts spread across
-multiple VLANs on the switch.
+```
+                        802.1Q trunk (VLANs 10, 20)
+                  S1 Fa0/1 <------------------> S1 Fa0/1... (S2 Fa0/1)
+                     |                                |
+  R1 G0/0/0 <---+    | Fa0/2: PC2 (VLAN 10)            | Fa0/2: PC3 (VLAN 20)
+  (trunk, port   |    |        192.168.10.2            |        (IP TBD)
+   TBD on S1) ---+    + VLAN 10 PC: 192.168.10.3 (S2, port TBD)
+   .10: 192.168.10.1/24
+   .20: 192.168.20.1/24
+```
 
-> Configs below are placeholders — paste the actual commands and addressing
-> from the Packet Tracer session before marking this complete.
+| Device | Interface / Port | VLAN | IP address |
+|--------|------------------|------|------------|
+| R1 | G0/0/0.10 | 10 | 192.168.10.1/24 |
+| R1 | G0/0/0.20 | 20 | 192.168.20.1/24 |
+| R1 | G0/0/0 (parent) | trunk | no IP (see §4) |
+| PC2 | S1 Fa0/2 | 10 | 192.168.10.2/24 |
+| PC (VLAN 10) | S2 (port TBD) | 10 | 192.168.10.3/24 |
+| PC3 | S2 Fa0/2 | 20 | not yet recorded |
+| S1 ↔ S2 | Fa0/1 ↔ Fa0/1 | trunk, 802.1Q, VLANs 10+20 | — |
 
 ## 3. Configuration
 
+Recovered excerpts (post-fix state). Full running-configs still pending — see §8.
+
+### R1
+
 ```
-! TODO: paste router subinterface config (encapsulation dot1Q, IP per VLAN)
-! TODO: paste switch trunk + access-port config
+interface GigabitEthernet0/0/0
+ no ip address
+!
+interface GigabitEthernet0/0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+!
+interface GigabitEthernet0/0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+```
+
+### S1 / S2
+
+```
+! TODO: full running-configs pending capture
+! Known: S1 Fa0/1 <-> S2 Fa0/1 trunk, 802.1Q, VLANs 10 and 20
+! Known: S1 Fa0/2 access VLAN 10; S2 Fa0/2 access VLAN 20
 ```
 
 ## 4. What broke
@@ -37,15 +73,25 @@ gateway address.
 1. Removed the IP address from the parent physical interface.
 2. Confirmed each subinterface had the correct `encapsulation dot1Q <vlan>`
    and gateway IP for its VLAN.
-3. Re-tested inter-VLAN pings after the correction.
+3. Re-tested pings after the correction.
 
 ## 6. Verification
 
-- 4/4 inter-VLAN pings succeeded after the fix.
-- TTL behavior across routed hops confirmed and understood.
+- Same-VLAN connectivity: 4/4 pings successful (recorded).
+- Inter-VLAN final tests: **outstanding**.
+- VLAN/trunk verification (`show vlan brief`, `show interfaces trunk`): **outstanding**.
 
 ## 7. Takeaway
 
 On a router-on-a-stick, the physical trunk interface stays unnumbered — the
 moment you IP it, you've told the router the wrong story about where each
 VLAN's gateway lives.
+
+## 8. Evidence still needed
+
+- [ ] Full `show running-config` from R1, S1, and S2 (passwords stripped)
+- [ ] `show vlan brief` and `show interfaces trunk` from both switches
+- [ ] Final inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
+- [ ] PC3's IP address; S2 port for the 192.168.10.3 PC; R1↔S1 trunk port ID
+
+**This entry is not fully verified until the above is captured.**
