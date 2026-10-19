@@ -134,6 +134,33 @@ gateway address.
 Finding: the parent physical interface and both subinterfaces are up/up,
 supporting the router-side configuration of VLANs 10 and 20.
 
+### S1 VLAN / trunk / interface status — captured 2026-10-19 ✅
+
+**VLANs** (`show vlan brief`):
+
+| VLAN | Name | Status | Ports |
+|------|------|--------|-------|
+| 10 | SALES | active | Fa0/2 |
+| 20 | HR | active | — |
+| 1 | default | active | unused/default access ports |
+
+**Trunks** (`show interfaces trunk`):
+
+| Port | Status | Encapsulation | Native VLAN | VLANs allowed |
+|------|--------|---------------|-------------|---------------|
+| Fa0/1 | connected, trunking | 802.1Q | 1 | 1–1005 |
+| Gi0/1 | connected, trunking | 802.1Q | 1 | 1–1005 |
+
+VLANs 1, 10, and 20 are active and in spanning-tree forwarding state on both
+trunks.
+
+**Access port** (`show interfaces status`): Fa0/2 — connected, access VLAN 10,
+full duplex, 100 Mbps.
+
+**Topology note:** both Fa0/1 and Gi0/1 are connected trunks. Fa0/1 was assumed
+to be the S1–S2 link, but the actual cable mapping is unconfirmed — check S2
+before finalizing the topology diagram.
+
 ## 7. Takeaway
 
 On a router-on-a-stick, the physical trunk interface stays unnumbered — the
@@ -145,10 +172,10 @@ VLAN's gateway lives.
 - [x] Full `show running-config` from R1 (captured 2026-10-19)
 - [x] R1 interface status (captured 2026-10-19 — parent + both subinterfaces up/up)
 - [x] Full `show running-config` from S1 (captured 2026-10-19)
+- [x] S1 VLAN/trunk/interface status (captured 2026-10-19 — VLANs 10 SALES / 20 HR; Fa0/1 + Gi0/1 trunking)
 - [ ] Full `show running-config` from S2 (passwords stripped)
-- [ ] `show vlan brief` and `show interfaces trunk` from both switches
-- [ ] R1 interface status (`show ip interface brief`)
+- [ ] S2 VLAN/trunk status + confirm S1↔S2 / S1↔R1 cable mapping
 - [ ] Final inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
-- [ ] PC3's IP address; S2 port for the 192.168.10.3 PC; R1↔S1 trunk port ID
+- [ ] PC3's IP address; S2 port for the 192.168.10.3 PC
 
 **This entry is not fully verified until the above is captured.**
