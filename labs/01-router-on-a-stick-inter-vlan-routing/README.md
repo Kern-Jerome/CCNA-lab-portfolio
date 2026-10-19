@@ -30,7 +30,7 @@ VLANs.
 | R1 | G0/0/0.20 | 20 | 192.168.20.1/24 |
 | R1 | G0/0/0 (parent) | trunk | no IP (see §4) |
 | PC2 | S1 Fa0/2 | 10 | 192.168.10.2/24 |
-| PC (VLAN 10) | S2 (port TBD) | 10 | 192.168.10.3/24 |
+| PC (VLAN 10) | S2 Fa0/3 | 10 | 192.168.10.3/24 |
 | PC3 | S2 Fa0/2 | 20 | not yet recorded |
 | S1 ↔ S2 | Fa0/1 ↔ Fa0/1 | trunk, 802.1Q, VLANs 10+20 | — |
 
@@ -92,7 +92,26 @@ interface Vlan1
 Note: Gi0/1 is trunk-configured — likely the R1 uplink, but confirm whether
 it's actually connected or just configured.
 
-### S2 — pending ⏳
+### S2 — running-config captured 2026-10-19 ✅
+
+IOS 15.0 · hostname S2 · details below reconstructed from the captured output.
+
+```
+hostname S2
+!
+spanning-tree mode pvst
+!
+interface FastEthernet0/1
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport mode access
+ switchport access vlan 20
+!
+interface FastEthernet0/3
+ switchport mode access
+ switchport access vlan 10
+```
 
 ```
 ! TODO: full running-configs pending capture
@@ -157,9 +176,22 @@ trunks.
 **Access port** (`show interfaces status`): Fa0/2 — connected, access VLAN 10,
 full duplex, 100 Mbps.
 
-**Topology note:** both Fa0/1 and Gi0/1 are connected trunks. Fa0/1 was assumed
-to be the S1–S2 link, but the actual cable mapping is unconfirmed — check S2
-before finalizing the topology diagram.
+**Topology note:** S1 Fa0/1 and S2 Fa0/1 both report operational trunking —
+consistent with the inter-switch link. S1 Gi0/1 is also connected and trunking
+but its neighbor is unidentified; `show cdp neighbors` on R1, S1, and S2 will
+settle the physical topology.
+
+### S2 VLAN / trunk / interface status — captured 2026-10-19 ✅
+
+| Port | Status | Details |
+|------|--------|---------|
+| Fa0/1 | connected, trunking | 802.1Q, allows VLANs 1–1005; VLANs 1, 10, 20 active and forwarding |
+| Fa0/2 | connected | access VLAN 20 (HR), full duplex, 100 Mbps |
+| Fa0/3 | connected | access VLAN 10 (SALES), full duplex, 100 Mbps |
+| Gi0/1, Gi0/2 | not connected | — |
+
+Evidence captured: `show running-config`, `show vlan brief`,
+`show interfaces trunk`, `show interfaces status`.
 
 ## 7. Takeaway
 
@@ -173,9 +205,12 @@ VLAN's gateway lives.
 - [x] R1 interface status (captured 2026-10-19 — parent + both subinterfaces up/up)
 - [x] Full `show running-config` from S1 (captured 2026-10-19)
 - [x] S1 VLAN/trunk/interface status (captured 2026-10-19 — VLANs 10 SALES / 20 HR; Fa0/1 + Gi0/1 trunking)
-- [ ] Full `show running-config` from S2 (passwords stripped)
-- [ ] S2 VLAN/trunk status + confirm S1↔S2 / S1↔R1 cable mapping
-- [ ] Final inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
-- [ ] PC3's IP address; S2 port for the 192.168.10.3 PC
+- [x] Full `show running-config` from S2 (captured 2026-10-19)
+- [x] S2 VLAN/trunk/interface status (captured 2026-10-19)
+- [ ] `show cdp neighbors` on R1, S1, S2 (identify S1 Gi0/1 neighbor; finalize topology)
+- [ ] PC IPs, subnet masks, default gateways (PC3's IP still TBD)
+- [ ] Each PC pings its VLAN gateway
+- [ ] Inter-VLAN ping tests (e.g. PC2 ↔ PC3, 192.168.10.3 ↔ VLAN 20 host)
+- [ ] Troubleshoot any failures, rerun verification, document final results
 
 **This entry is not fully verified until the above is captured.**
