@@ -92,6 +92,20 @@ gateway address.
 - Inter-VLAN final tests: **outstanding**.
 - VLAN/trunk verification (`show vlan brief`, `show interfaces trunk`): **outstanding**.
 
+### R1 `show ip interface brief` — captured 2026-10-19 ✅
+
+| Interface | IP address | Status | Protocol |
+|---|---|---|---|
+| G0/0/0 | Unassigned | Up | Up |
+| G0/0/0.10 | 192.168.10.1 | Up | Up |
+| G0/0/0.20 | 192.168.20.1 | Up | Up |
+| G0/0/1 | Unassigned | Administratively down | Down |
+| G0/0/2 | Unassigned | Administratively down | Down |
+| Vlan1 | Unassigned | Administratively down | Down |
+
+Finding: the parent physical interface and both subinterfaces are up/up,
+supporting the router-side configuration of VLANs 10 and 20.
+
 ## 7. Takeaway
 
 On a router-on-a-stick, the physical trunk interface stays unnumbered — the
@@ -101,6 +115,7 @@ VLAN's gateway lives.
 ## 8. Evidence still needed
 
 - [x] Full `show running-config` from R1 (captured 2026-10-19)
+- [x] R1 interface status (captured 2026-10-19 — parent + both subinterfaces up/up)
 - [ ] Full `show running-config` from S1 and S2 (passwords stripped)
 - [ ] `show vlan brief` and `show interfaces trunk` from both switches
 - [ ] R1 interface status (`show ip interface brief`)
