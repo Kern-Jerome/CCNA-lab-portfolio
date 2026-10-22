@@ -10,6 +10,7 @@ what I built, what broke, and how I fixed it.
 | # | Lab | Focus | Status |
 |---|-----|-------|--------|
 | 01 | [Router-on-a-Stick: Inter-VLAN Routing](labs/01-router-on-a-stick-inter-vlan-routing/) | 802.1Q subinterfaces, inter-VLAN connectivity | Complete |
+| 02 | [STP Root Bridge Election and Loop Prevention](labs/02-stp-root-bridge-and-loop-prevention/) | PVST, root elections, port roles, link-failure testing | Complete |
 
 ## Lab write-up format
 
