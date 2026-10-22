@@ -4,6 +4,7 @@
 **Status:** ✅ Complete and verified
 **Tool:** Cisco Packet Tracer
 **Topics:** 802.1Q trunking, router subinterfaces, inter-VLAN routing
+**Packet Tracer project:** [Lab 01 Router on a Stick Inter VLAN Routing.pkt](./Lab%2001%20Router%20on%20a%20Stick%20Inter%20VLAN%20Routing.pkt)
 
 ## 1. Objective
 
