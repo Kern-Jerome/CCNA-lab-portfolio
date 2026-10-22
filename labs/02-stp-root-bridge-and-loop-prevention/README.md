@@ -3,7 +3,7 @@
 **Date completed:** October 21, 2026  
 **Platform:** Cisco Packet Tracer, Cisco 2960 switches  
 **Protocol observed:** Per-VLAN Spanning Tree (PVST), IEEE 802.1D STP (`spanning-tree mode pvst`; `protocol ieee`)  
-**Lab file:** `Lab-02-STP-Root-Bridge-and-Loop-Prevention.pkt`
+**Lab file:** [Lab 02 STP Root Bridge and Loop Prevention.pkt](./Lab%2002%20STP%20Root%20Bridge%20and%20Loop%20Prevention.pkt)
 
 ## Objective
 
@@ -117,7 +117,7 @@ This was a **planned failure simulation**, not a diagnosed accidental configurat
 - No measured STP convergence-time benchmark was performed; no claim is made about failover milliseconds or packet-loss duration.
 - RSTP was **not** configured or tested here; the outputs show traditional IEEE STP/PVST.
 - End-to-end ping tests were not repeated during the failure experiment.
-- The Packet Tracer file was saved locally; its separate upload to this repository is pending.
+- The Packet Tracer `.pkt` file has been uploaded alongside this README and is linked above.
 
 ## Next lab
 
