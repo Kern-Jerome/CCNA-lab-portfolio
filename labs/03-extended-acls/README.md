@@ -2,7 +2,7 @@
 
 **Completed:** October 28, 2026  
 **Platform:** Cisco Packet Tracer (Cisco IOS)  
-**Lab file:** `Lab 03 Extended ACLs.pkt` (upload to this directory)
+**Lab file:** [Lab 03 Extended ACLs.pkt](./Lab%2003%20Extended%20ACLs.pkt)
 
 ## Objective
 

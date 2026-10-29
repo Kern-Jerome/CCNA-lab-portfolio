@@ -34,6 +34,7 @@ the skills in them are the real, day-one skills of a junior network role.
 |---|-----|----------------|--------|
 | 01 | [Router-on-a-Stick: Inter-VLAN Routing](labs/01-router-on-a-stick-inter-vlan-routing/) | Two separate department networks, one router connection, full two-way communication | ✅ Complete |
 | 02 | [STP Root Bridge Election and Loop Prevention](labs/02-stp-root-bridge-and-loop-prevention/) | Redundant switch links kept loop-free; the backup path moves on command and survives a link failure test | ✅ Complete |
+| 03 | [Extended ACLs: Selective Inter-VLAN Filtering](labs/03-extended-acls/) | A firewall-style rule on the router that blocks one specific computer from reaching another — and nothing else | ✅ Complete |
 
 Each lab folder also holds the Packet Tracer project file, so a reviewer with
 Packet Tracer can open the exact network I built.
