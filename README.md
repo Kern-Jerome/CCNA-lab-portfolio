@@ -44,12 +44,12 @@ the skills in them are the real, day-one skills of a junior network role.
 
 Each lab folder includes its Packet Tracer project file so reviewers can open the actual network in Cisco Packet Tracer.
 
-Each lab has a **recruiter-friendly visual topology** and a short interview explanation at the top of both its **SUMMARY.md** and technical **README.md**. Start with a diagram to see the devices, links, and purpose; open the `.pkt` file for the actual simulated network.
+Each lab has a **easy-to-read visual topology** and a short interview explanation at the top of both its **SUMMARY.md** and technical **README.md**. Start with a diagram to see the devices, links, and purpose; open the `.pkt` file for the actual simulated network.
 
 ## How every lab is documented
 
 1. **Objective** — what the lab proves
-2. **Visual topology + 20-second recruiter explanation** — a GitHub-rendered Mermaid diagram, device/link labels, and a plain-language interview pitch
+2. **Visual topology + 20-second network explanation** — a GitHub-rendered Mermaid diagram, device/link labels, and a plain-language interview pitch
 3. **Configuration** — the actual commands I ran (passwords removed)
 4. **What broke** — the fault, in my own words
 5. **What fixed it** — the troubleshooting steps, in order
