@@ -5,6 +5,16 @@
 **Lab file:** [Lab 04 EtherChannel.pkt](./Lab%2004%20EtherChannel.pkt)  
 **Plain-language summary:** [SUMMARY.md](./SUMMARY.md)
 
+## Quick overview
+
+**The problem:** One unplugged or disabled cable should not bring down a bundled switch link.
+
+**What I built:** I used LACP to combine two cables as one EtherChannel and tested a member-link shutdown plus a separate Spanning Tree path change.
+
+**Verified result:** Both members showed bundled status; the logical Port-channel stayed operational with one member disabled. Traffic throughput was not measured.
+
+**Short version:** [Read the diagram and plain-language summary](./SUMMARY.md). The sections below contain the detailed configuration and troubleshooting evidence.
+
 ## Topology at a glance
 
 ```mermaid
