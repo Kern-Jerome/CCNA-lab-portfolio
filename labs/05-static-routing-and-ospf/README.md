@@ -5,6 +5,16 @@
 **Project file:** [Lab 05 Static Routing and OSPF.pkt](./Lab%2005%20Static%20Routing%20and%20OSPF.pkt)  
 **Plain-language summary:** [SUMMARY.md](./SUMMARY.md)
 
+## Quick overview
+
+**The problem:** Two local networks need IPv4 and IPv6 connectivity, and the routers must learn IPv4 routes automatically.
+
+**What I built:** I configured IPv4/IPv6 static routes, then OSPF for IPv4, and traced an absent route through the link-state database.
+
+**Verified result:** PC1 → PC2: 4/4 successful pings on IPv4 and IPv6; both routers installed remote IPv4 LAN routes via OSPF.
+
+**Short version:** [Read the diagram and plain-language summary](./SUMMARY.md). The sections below contain the detailed configuration and troubleshooting evidence.
+
 ## Topology at a glance
 
 ```mermaid
@@ -14,13 +24,13 @@ flowchart LR
   r2["R2 router<br/>LAN GW: 192.168.20.1"]
   pc2["PC2<br/>192.168.20.10"]
   pc1 ---|"LAN A<br/>192.168.10.0/24"| r1
-  r1 ===|"WAN: 10.0.12.0/30<br/>OSPF area 0"| r2
+  r1 ---|"WAN: 10.0.12.0/30<br/>OSPF area 0"| r2
   r2 ---|"LAN B<br/>192.168.20.0/24"| pc2
 ```
 
 **How I'd explain this network (about 20 seconds):** I built two LANs connected by two routers. First I set up IPv4 and IPv6 static routes; then I replaced the IPv4 static routes with OSPF. When the routers were neighbors but no route appeared, I investigated the link-state database, corrected the topology advertisement, and verified successful PC-to-PC communication.
 
-**Reading the diagram:** The WAN also uses IPv6 subnet 2001:DB8:12::/64; the LAN IPv6 subnets are 2001:DB8:10::/64 and 2001:DB8:20::/64. OSPFv2 handles IPv4 in the final state; the IPv6 static routes remain separately configured. The double line here emphasizes the WAN link, not an EtherChannel.
+**Reading the diagram:** The WAN also uses IPv6 subnet 2001:DB8:12::/64; the LAN IPv6 subnets are 2001:DB8:10::/64 and 2001:DB8:20::/64. OSPFv2 handles IPv4 in the final state; the IPv6 static routes remain separately configured. The link between R1 and R2 is a WAN connection, not an EtherChannel.
 
 ## Objective
 
