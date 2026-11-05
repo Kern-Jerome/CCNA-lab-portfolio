@@ -10,7 +10,7 @@
 
 ## Topology at a glance — REQUIRED FOR EVERY LAB
 
-Create a **GitHub-rendered Mermaid diagram** based on the actual verified Packet Tracer wiring, not a hypothetical design. Use clear device labels, subnet or VLAN labels, and no more detail than a recruiter needs.
+Create a **GitHub-rendered Mermaid diagram** based on the actual verified Packet Tracer wiring, not a hypothetical design. Use clear device labels, subnet or VLAN labels, and only the details needed to understand the network.
 
 ```mermaid
 flowchart LR
@@ -18,7 +18,7 @@ flowchart LR
   sw ---|"Uplink (replace with actual type)"| r1["Router<br/>Gateway: 192.168.X.1"]
 ```
 
-**How I'd explain this to a recruiter (about 20 seconds):** [One plain-language statement of the business problem, what I configured, and how I proved it worked.]
+**How I'd explain this network (about 20 seconds):** [One plain-language statement of the business problem, what I configured, and how I proved it worked.]
 
 **Reading the diagram:** [Define the line meanings, ports/VLANs/subnets and any intentionally omitted devices; note when the diagram depicts a particular STP or ACL test state.]
 
