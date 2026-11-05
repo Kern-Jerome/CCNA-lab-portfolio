@@ -1,4 +1,6 @@
-# Lab 03 in Plain Language — One Computer Blocked, Everyone Else Through
+# Lab 03 — Block one ping test while leaving other traffic available
+
+**In one sentence:** I created a targeted router rule that stopped one Sales computer from pinging one HR computer, without blocking the other tested connections.
 
 ## Topology at a glance
 
@@ -17,66 +19,31 @@ flowchart LR
   s1 ---|"802.1Q trunk"| r1
 ```
 
-**How I'd explain this network (about 20 seconds):** I placed a precise traffic-filtering rule on the router. During the test, one Sales PC was blocked from pinging one HR PC, while another Sales PC could still reach it. I verified the permit and deny results and then cleanly removed the ACL assignment.
+**How to read it:** The diagram shows where the rule was **applied during testing**. Its interface assignment was removed at the end. This lab tested ICMP (ping), not a complete security policy.
 
-**Reading the diagram:** This shows the physical VLAN topology and where ACL 180 was applied during the test. It blocked only ICMP from 192.168.10.2 to 192.168.20.2; the ACL assignment was removed at the end of the lab. The intentionally unused PC1 is omitted.
+## What I changed
 
-**The task.** In Lab 01, the Sales and HR networks could reach each other
-freely. Real networks need finer control than that: sometimes one specific
-computer must be kept away from one specific machine, while everyone else's
-work continues untouched. I added that kind of rule — a filter on the router
-called an access control list — and proved it blocked exactly the one
-conversation it was aimed at, and nothing more.
+- Created an access control list (ACL): a rule that filters network traffic.
+- Applied the rule to incoming Sales traffic on the router.
+- Tested blocked traffic, allowed traffic, and the result after removing the rule.
 
-**The setup.** The same router and department networks as Lab 01: Sales
-(192.168.10.0) and HR (192.168.20.0) connected through one Cisco router in
-Packet Tracer, with two Sales computers and one HR computer in the test.
+## What I verified
 
-**What I did.**
+- Blocked Sales PC → HR PC ping: **0 out of 4 replies**.
+- Second Sales PC → HR PC ping: **4 out of 4 replies**. The blocked Sales PC could still ping the HR gateway.
+- After removing the ACL from the interface, the originally blocked ping succeeded **4 out of 4 times**.
 
-1. **Wrote the rule.** One Sales computer (192.168.10.2) is denied from
-   pinging the HR computer (192.168.20.2). Every other kind of traffic, from
-   every other computer, is explicitly allowed through.
-2. **Placed it where it works best.** The filter sits on the router port
-   where Sales traffic arrives — as close to the source as possible, so
-   blocked traffic is dropped before it crosses the network.
-3. **Tested both directions of the claim.** The blocked computer's pings
-   failed completely (0 of 4 replies, with the router reporting the
-   destination unreachable), while the same computer could still reach other
-   addresses, and the second Sales computer could still reach the HR
-   computer. The router's own match counters agreed: the deny rule counted
-   exactly the blocked attempts, and the allow rule counted the traffic that
-   passed.
-4. **Reversed it cleanly.** I removed the rule from the router port without
-   deleting the rule itself, then verified the block was gone and the
-   original traffic flowed again — the standard way to undo a network change
-   without destroying the policy you might need later.
+## What went wrong — and how I handled it
 
-**What broke.** One real mistake, mine: while removing the rule, I typed the
-removal command in a way that created a stray filter reference literally
-named "no." I spotted it in the router's verification output, removed it
-properly, and confirmed the final state was clean. It's documented in the
-full write-up because it's the kind of slip that matters on real equipment —
-and because catching it is the skill.
+During removal, I accidentally created an ACL reference named `no`. I identified it in router output, removed the incorrect assignment, and verified that the intended traffic worked again.
 
-**What it proves.**
+## Why it matters
 
-- I can filter traffic with surgical precision — one computer, one type of
-  traffic — instead of blunt all-or-nothing blocking.
-- I verify a security rule from both sides: proof the forbidden traffic
-  stops *and* proof the allowed traffic still flows.
-- I make changes I can undo: apply, test, roll back, and confirm the
-  rollback, leaving the network exactly as documented.
+A narrowly targeted rule can stop one kind of traffic without cutting off every device or service.
 
-**A sample of the configuration** (the full write-up is in this folder's
-README.md):
+## Open the files
 
-```
-ip access-list extended 180
- 10 deny icmp host 192.168.10.2 host 192.168.20.2
- 20 permit ip any any
-```
+- [Technical write-up: configuration, commands, and evidence](./README.md)
+- [Open the Packet Tracer project](./Lab%2003%20Extended%20ACLs.pkt)
 
-Line 10 is the block: ping traffic from the one Sales computer to the one HR
-computer is denied. Line 20 is just as important — everything else is
-explicitly permitted, so the rule changes only what it means to change.
+**Note:** This is a simulated learning project, not a production deployment.
