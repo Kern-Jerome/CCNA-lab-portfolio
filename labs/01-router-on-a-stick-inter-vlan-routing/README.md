@@ -6,6 +6,16 @@
 **Topics:** 802.1Q trunking, router subinterfaces, inter-VLAN routing
 **Packet Tracer project:** [Lab 01 Router on a Stick Inter VLAN Routing.pkt](./Lab%2001%20Router%20on%20a%20Stick%20Inter%20VLAN%20Routing.pkt)
 
+## Quick overview
+
+**The problem:** Sales and HR need separate networks but must still communicate.
+
+**What I built:** I configured two VLANs, a shared trunk link, and a router gateway for each VLAN.
+
+**Verified result:** Cross-department PC pings succeeded: 4/4 replies, 0% loss.
+
+**Short version:** [Read the diagram and plain-language summary](./SUMMARY.md). The sections below contain the detailed configuration and troubleshooting evidence.
+
 ## Topology at a glance
 
 ```mermaid
