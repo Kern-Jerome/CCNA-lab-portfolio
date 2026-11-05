@@ -18,7 +18,7 @@ flowchart LR
   r2 ---|"LAN B<br/>192.168.20.0/24"| pc2
 ```
 
-**How I'd explain this to a recruiter (about 20 seconds):** I built two LANs connected by two routers. First I set up IPv4 and IPv6 static routes; then I replaced the IPv4 static routes with OSPF. When the routers were neighbors but no route appeared, I investigated the link-state database, corrected the topology advertisement, and verified successful PC-to-PC communication.
+**How I'd explain this network (about 20 seconds):** I built two LANs connected by two routers. First I set up IPv4 and IPv6 static routes; then I replaced the IPv4 static routes with OSPF. When the routers were neighbors but no route appeared, I investigated the link-state database, corrected the topology advertisement, and verified successful PC-to-PC communication.
 
 **Reading the diagram:** The WAN also uses IPv6 subnet 2001:DB8:12::/64; the LAN IPv6 subnets are 2001:DB8:10::/64 and 2001:DB8:20::/64. OSPFv2 handles IPv4 in the final state; the IPv6 static routes remain separately configured. The double line here emphasizes the WAN link, not an EtherChannel.
 
