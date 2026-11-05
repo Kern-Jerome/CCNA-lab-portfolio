@@ -34,30 +34,29 @@ the skills in them are the real, day-one skills of a junior network role.
 
 ## Labs
 
-| # | Lab | What it proves | Status |
-|---|-----|----------------|--------|
-| 01 | [Router-on-a-Stick: Inter-VLAN Routing](labs/01-router-on-a-stick-inter-vlan-routing/) | Two separate department networks, one router connection, full two-way communication | ✅ Complete |
-| 02 | [STP Root Bridge Election and Loop Prevention](labs/02-stp-root-bridge-and-loop-prevention/) | Redundant switch links kept loop-free; the backup path moves on command and survives a link failure test | ✅ Complete |
-| 03 | [Extended ACLs: Selective Inter-VLAN Filtering](labs/03-extended-acls/) | A firewall-style rule on the router that blocks one specific computer from reaching another — and nothing else | ✅ Complete |
-| 04 | [EtherChannel (LACP): Link Aggregation and STP Failover](labs/04-etherchannel/) | Two switch cables operate as one logical trunk; one cable fails without dropping the Port-channel, and STP reroutes around a separate failure | ✅ Complete |
-| 05 | [IPv4/IPv6 Static Routing and OSPFv2 Troubleshooting](labs/05-static-routing-and-ospf/) | Dual-stack static routes, OSPF adjacency and LAN advertisements, diagnosing a missing OSPF route using LSAs, and verified PC-to-PC pings | ✅ Complete |
+| # | Lab | What it proves | Topology diagram | Status |
+|---|-----|----------------|------------------|--------|
+| 01 | [Router-on-a-Stick: Inter-VLAN Routing](labs/01-router-on-a-stick-inter-vlan-routing/) | Two separate department networks, one router connection, full two-way communication | [View diagram](labs/01-router-on-a-stick-inter-vlan-routing/SUMMARY.md#topology-at-a-glance) | ✅ Complete |
+| 02 | [STP Root Bridge Election and Loop Prevention](labs/02-stp-root-bridge-and-loop-prevention/) | Redundant switch links kept loop-free; the backup path moves on command and survives a link failure test | [View diagram](labs/02-stp-root-bridge-and-loop-prevention/SUMMARY.md#topology-at-a-glance) | ✅ Complete |
+| 03 | [Extended ACLs: Selective Inter-VLAN Filtering](labs/03-extended-acls/) | A firewall-style rule on the router that blocks one specific computer from reaching another — and nothing else | [View diagram](labs/03-extended-acls/SUMMARY.md#topology-at-a-glance) | ✅ Complete |
+| 04 | [EtherChannel (LACP): Link Aggregation and STP Failover](labs/04-etherchannel/) | Two switch cables operate as one logical trunk; one cable fails without dropping the Port-channel, and STP reroutes around a separate failure | [View diagram](labs/04-etherchannel/SUMMARY.md#topology-at-a-glance) | ✅ Complete |
+| 05 | [IPv4/IPv6 Static Routing and OSPFv2 Troubleshooting](labs/05-static-routing-and-ospf/) | Dual-stack static routes, OSPF adjacency and LAN advertisements, diagnosing a missing OSPF route using LSAs, and verified PC-to-PC pings | [View diagram](labs/05-static-routing-and-ospf/SUMMARY.md#topology-at-a-glance) | ✅ Complete |
 
 Each lab folder includes its Packet Tracer project file so reviewers can open the actual network in Cisco Packet Tracer.
 
-New to the details? Each lab has a one-page **SUMMARY.md** in plain language.
-The full technical write-up is the README.md beside it.
+Each lab has a **recruiter-friendly visual topology** and a short interview explanation at the top of both its **SUMMARY.md** and technical **README.md**. Start with a diagram to see the devices, links, and purpose; open the `.pkt` file for the actual simulated network.
 
 ## How every lab is documented
 
 1. **Objective** — what the lab proves
-2. **Topology** — devices, addressing, how it's wired
+2. **Visual topology + 20-second recruiter explanation** — a GitHub-rendered Mermaid diagram, device/link labels, and a plain-language interview pitch
 3. **Configuration** — the actual commands I ran (passwords removed)
 4. **What broke** — the fault, in my own words
 5. **What fixed it** — the troubleshooting steps, in order
 6. **Verification** — the proof it works (pings, status reports)
 7. **Takeaway** — the one thing I'll remember under exam pressure
 
-Template: [lab-writeup-template.md](labs/_template/lab-writeup-template.md)
+Template (use for every future lab): [lab-writeup-template.md](labs/_template/lab-writeup-template.md). New labs must include a visual diagram in both the README and SUMMARY, based on the verified project topology.
 
 ## Python automation
 

@@ -1,5 +1,26 @@
 # Lab 03 in Plain Language — One Computer Blocked, Everyone Else Through
 
+## Topology at a glance
+
+```mermaid
+flowchart LR
+  pc2["Sales PC2<br/>192.168.10.2<br/>Tested blocked source"]
+  pc4["Sales PC4<br/>192.168.10.3<br/>Tested permitted source"]
+  pc3["HR PC3<br/>192.168.20.2<br/>Target"]
+  s1["S1 switch"]
+  s2["S2 switch"]
+  r1["R1 router<br/>ACL 180 inbound on VLAN 10<br/>Routes between VLANs"]
+  pc2 ---|"VLAN 10"| s1
+  pc4 ---|"VLAN 10"| s2
+  pc3 ---|"VLAN 20"| s2
+  s2 ---|"802.1Q trunk"| s1
+  s1 ---|"802.1Q trunk"| r1
+```
+
+**How I'd explain this to a recruiter (about 20 seconds):** I placed a precise traffic-filtering rule on the router. During the test, one Sales PC was blocked from pinging one HR PC, while another Sales PC could still reach it. I verified the permit and deny results and then cleanly removed the ACL assignment.
+
+**Reading the diagram:** This shows the physical VLAN topology and where ACL 180 was applied during the test. It blocked only ICMP from 192.168.10.2 to 192.168.20.2; the ACL assignment was removed at the end of the lab. The intentionally unused PC1 is omitted.
+
 **The task.** In Lab 01, the Sales and HR networks could reach each other
 freely. Real networks need finer control than that: sometimes one specific
 computer must be kept away from one specific machine, while everyone else's

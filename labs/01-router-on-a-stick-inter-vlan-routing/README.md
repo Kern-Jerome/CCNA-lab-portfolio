@@ -6,6 +6,27 @@
 **Topics:** 802.1Q trunking, router subinterfaces, inter-VLAN routing
 **Packet Tracer project:** [Lab 01 Router on a Stick Inter VLAN Routing.pkt](./Lab%2001%20Router%20on%20a%20Stick%20Inter%20VLAN%20Routing.pkt)
 
+## Topology at a glance
+
+```mermaid
+flowchart LR
+  sales1["Sales PC1<br/>192.168.10.2"]
+  sales2["Sales PC2<br/>192.168.10.3"]
+  hr["HR PC<br/>192.168.20.2"]
+  s1["S1 switch"]
+  s2["S2 switch"]
+  r1["R1 router<br/>VLAN 10 GW: 192.168.10.1<br/>VLAN 20 GW: 192.168.20.1"]
+  sales1 ---|"Access VLAN 10"| s1
+  sales2 ---|"Access VLAN 10"| s2
+  hr ---|"Access VLAN 20"| s2
+  s2 ---|"802.1Q trunk<br/>VLANs 10 and 20"| s1
+  s1 ---|"802.1Q trunk<br/>VLANs 10 and 20"| r1
+```
+
+**How I'd explain this to a recruiter (about 20 seconds):** I separated Sales and HR into two VLANs and connected them through one router interface using VLAN tags. Each department has its own gateway, and I verified that PCs in different VLANs could communicate through the router.
+
+**Reading the diagram:** Solid lines represent physical connections. The two switch-to-switch and switch-to-router links carry both VLANs; a PC's access port belongs to only one VLAN.
+
 ## 1. Objective
 
 Route traffic between VLANs through a single router interface using 802.1Q

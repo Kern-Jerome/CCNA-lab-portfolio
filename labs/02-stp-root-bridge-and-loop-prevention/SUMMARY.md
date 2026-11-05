@@ -1,5 +1,21 @@
 # Lab 02 in Plain Language — Backup Cables Without the Meltdown
 
+## Topology at a glance
+
+```mermaid
+flowchart LR
+  s1["S1 switch"]
+  s2["S2 switch"]
+  s3["S3 switch<br/>VLAN 10 root bridge<br/>Priority 4096"]
+  s1 ---|"Fa0/3 ↔ Fa0/1<br/>Forwarding"| s3
+  s2 ---|"Fa0/5 ↔ Fa0/2<br/>Forwarding"| s3
+  s1 ---|"Fa0/1 ↔ Fa0/1<br/>Blocked at S2 for VLAN 10"| s2
+```
+
+**How I'd explain this to a recruiter (about 20 seconds):** I built a triangle of switches so there was a backup path, then used Spanning Tree to prevent loops. I made S3 the root switch and verified that S2 blocked the redundant VLAN 10 path. I also tested a controlled link shutdown and restoration.
+
+**Reading the diagram:** All three links are physically connected. 'Blocked at S2' means STP stops VLAN 10 forwarding on that port, not that its cable is unplugged. The diagram focuses on the three-switch STP experiment; the Lab 01 router and PCs remained in the project.
+
 **The task.** Connecting switches with spare cables is how you keep an office
 network alive when one cable or port fails. But a spare path creates a loop,
 and a loop can flood a network into uselessness in seconds. Switches solve

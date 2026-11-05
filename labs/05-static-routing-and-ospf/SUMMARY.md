@@ -1,5 +1,22 @@
 # Lab 05 in Plain Language — Static Routes, OSPF, and Finding a Hidden Routing Problem
 
+## Topology at a glance
+
+```mermaid
+flowchart LR
+  pc1["PC1<br/>192.168.10.10"]
+  r1["R1 router<br/>LAN GW: 192.168.10.1"]
+  r2["R2 router<br/>LAN GW: 192.168.20.1"]
+  pc2["PC2<br/>192.168.20.10"]
+  pc1 ---|"LAN A<br/>192.168.10.0/24"| r1
+  r1 ===|"WAN: 10.0.12.0/30<br/>OSPF area 0"| r2
+  r2 ---|"LAN B<br/>192.168.20.0/24"| pc2
+```
+
+**How I'd explain this to a recruiter (about 20 seconds):** I built two LANs connected by two routers. First I set up IPv4 and IPv6 static routes; then I replaced the IPv4 static routes with OSPF. When the routers were neighbors but no route appeared, I investigated the link-state database, corrected the topology advertisement, and verified successful PC-to-PC communication.
+
+**Reading the diagram:** The WAN also uses IPv6 subnet 2001:DB8:12::/64; the LAN IPv6 subnets are 2001:DB8:10::/64 and 2001:DB8:20::/64. OSPFv2 handles IPv4 in the final state; the IPv6 static routes remain separately configured. The double line here emphasizes the WAN link, not an EtherChannel.
+
 **Completed:** November 4, 2026  
 **Technical write-up:** [README.md](./README.md)  
 **Packet Tracer project:** [Lab 05 Static Routing and OSPF.pkt](./Lab%2005%20Static%20Routing%20and%20OSPF.pkt)
