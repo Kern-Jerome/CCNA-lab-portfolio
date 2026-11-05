@@ -17,7 +17,7 @@ flowchart LR
   s1 ---|"Fa0/1 ↔ Fa0/1<br/>Blocked at S2 for VLAN 10"| s2
 ```
 
-**How I'd explain this to a recruiter (about 20 seconds):** I built a triangle of switches so there was a backup path, then used Spanning Tree to prevent loops. I made S3 the root switch and verified that S2 blocked the redundant VLAN 10 path. I also tested a controlled link shutdown and restoration.
+**How I'd explain this network (about 20 seconds):** I built a triangle of switches so there was a backup path, then used Spanning Tree to prevent loops. I made S3 the root switch and verified that S2 blocked the redundant VLAN 10 path. I also tested a controlled link shutdown and restoration.
 
 **Reading the diagram:** All three links are physically connected. 'Blocked at S2' means STP stops VLAN 10 forwarding on that port, not that its cable is unplugged. The diagram focuses on the three-switch STP experiment; the Lab 01 router and PCs remained in the project.
 
