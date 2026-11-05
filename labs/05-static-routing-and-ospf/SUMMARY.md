@@ -2,7 +2,7 @@
 
 **Completed:** November 4, 2026  
 **Technical write-up:** [README.md](./README.md)  
-**Packet Tracer project:** `Lab 05 Static Routing and OSPF.pkt` — **upload pending**
+**Packet Tracer project:** [Lab 05 Static Routing and OSPF.pkt](./Lab%2005%20Static%20Routing%20and%20OSPF.pkt)
 
 **The task.** I built a small network with two routers and two PCs, with each PC on a different LAN. I first connected the networks using static IPv4 and IPv6 routes. Then I switched the IPv4 side to OSPF so the routers would learn each other's networks automatically.
 
@@ -24,4 +24,4 @@ PC1 -> PC2 (IPv6): 4/4 replies, 0% loss
 
 **What I demonstrated:** dual-stack interface addressing, IPv4/IPv6 static routing, OSPFv2 configuration, passive interfaces, administrative-distance reasoning, link-state database analysis, and verified end-to-end connectivity.
 
-**Evidence note:** The technical write-up records command outputs from the lab. The actual Packet Tracer project file is still pending upload and is not represented as already present.
+**Evidence note:** The technical write-up records command outputs from the lab. The Packet Tracer project file is included in this folder; no separate reopen-and-reverify test is claimed.

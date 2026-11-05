@@ -2,7 +2,7 @@
 
 **Completed:** November 4, 2026  
 **Platform:** Cisco Packet Tracer (Cisco IOS)  
-**Project file:** `Lab 05 Static Routing and OSPF.pkt` — **pending upload**  
+**Project file:** [Lab 05 Static Routing and OSPF.pkt](./Lab%2005%20Static%20Routing%20and%20OSPF.pkt)  
 **Plain-language summary:** [SUMMARY.md](./SUMMARY.md)
 
 ## Objective
@@ -186,4 +186,4 @@ This validates end-to-end IPv4 connectivity using OSPF-learned routes. The IPv6 
 
 ## Project-file and evidence status
 
-This write-up is based on actual IOS and PC command outputs recorded during the study session. **The completed `.pkt` file is not yet uploaded to this repository**; it must be added separately from the local Packet Tracer installation. No saved or reopened project-file verification is claimed here.
+This write-up is based on IOS and PC command outputs recorded during the study session. The Packet Tracer project file supplied after the session is included in this directory. A separate reopen-and-reverify test of that uploaded project file is not claimed.
