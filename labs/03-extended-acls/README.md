@@ -4,6 +4,16 @@
 **Platform:** Cisco Packet Tracer (Cisco IOS)  
 **Lab file:** [Lab 03 Extended ACLs.pkt](./Lab%2003%20Extended%20ACLs.pkt)
 
+## Quick overview
+
+**The problem:** One computer's ping traffic needs to be blocked without stopping other tested connections.
+
+**What I built:** I applied an access control list (ACL), verified both blocked and allowed pings, then removed the interface assignment.
+
+**Verified result:** Targeted ping: 0/4 replies; allowed comparison: 4/4; after rollback: 4/4.
+
+**Short version:** [Read the diagram and plain-language summary](./SUMMARY.md). The sections below contain the detailed configuration and troubleshooting evidence.
+
 ## Topology at a glance
 
 ```mermaid
