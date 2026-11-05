@@ -1,77 +1,63 @@
-# Lab NN — <Title>
+# Lab NN — [Plain-language title]
 
-**Date:** YYYY-MM-DD
-**Tool:** Cisco Packet Tracer
-**Topics:** <e.g. VLANs, trunking, inter-VLAN routing>
+**Completed:** YYYY-MM-DD  
+**Tool:** Cisco Packet Tracer  
+**Packet Tracer file:** [Actual filename.pkt](./Actual%20filename.pkt)  
+**Simple explanation:** [SUMMARY.md](./SUMMARY.md)
 
-## 1. Objective
+## Quick overview
 
-<One or two sentences: what is this lab proving I can do?>
+**The problem:** [One plain sentence describing what needed to work.]
 
-## Topology at a glance — REQUIRED FOR EVERY LAB
+**My solution:** [What I built or configured, explained without unexplained acronyms.]
 
-Create a **GitHub-rendered Mermaid diagram** based on the actual verified Packet Tracer wiring, not a hypothetical design. Use clear device labels, subnet or VLAN labels, and only the details needed to understand the network.
+**Proof:** [Exact result from the test: ping count, route, interface status, etc.]
+
+## Topology at a glance
+
+Create a GitHub-rendered Mermaid diagram using the **verified project wiring**. Label each device, important subnet/VLAN, and any blocked, redundant, or special link. Keep labels short.
 
 ```mermaid
 flowchart LR
-  pc["PC<br/>192.168.X.10"] ---|"Access network<br/>192.168.X.0/24"| sw["Switch"]
-  sw ---|"Uplink (replace with actual type)"| r1["Router<br/>Gateway: 192.168.X.1"]
+  pc["PC"] ---|"Local network"| sw["Switch"]
+  sw ---|"Uplink"| r1["Router"]
 ```
 
-**How I'd explain this network (about 20 seconds):** [One plain-language statement of the business problem, what I configured, and how I proved it worked.]
+**Reading the diagram:** [What the lines/labels mean. State what was intentionally omitted.]
 
-**Reading the diagram:** [Define the line meanings, ports/VLANs/subnets and any intentionally omitted devices; note when the diagram depicts a particular STP or ACL test state.]
+## What I configured
 
-**Before publishing:** Replace ALL placeholders; match the `.pkt` and the `show` outputs; don't claim ping/failover evidence that wasn't collected. Also put this same diagram and pitch near the top of `SUMMARY.md`.
+[Exact, verified Cisco IOS commands and device/interface assignments. Do not invent configuration.]
 
-## 2. Topology
+## What went wrong (if anything)
 
-<Devices, how they're connected, IP addressing plan. Paste a simple diagram or describe it.>
+[Observed failure and its evidence. Say "No unexpected failure" when appropriate.]
 
-```
-Example:
+## How I checked and fixed it
 
-        [Router R1]----trunk----[Switch SW1]----[PC1 (VLAN 10)]
-                                   |
-                                   +----[PC2 (VLAN 20)]
-```
+[Diagnostics, correction, and commands that prove the end state.]
 
-| Device | Interface | IP / VLAN |
-|--------|-----------|-----------|
-|        |           |           |
+## Results and limits
 
-## 3. Configuration
+[Quote only tests actually completed. State important untested conditions.]
 
-<The actual commands run on each device, in order. Paste from the session, don't retype from memory.>
+## What I learned
 
-### Device 1
+[One or two sentences with the main lesson.]
 
-```
-!
-! paste running-config excerpts or the exact commands entered
-!
-```
+---
 
-## 4. What broke
+### Make SUMMARY.md easy to scan
 
-<Describe the fault in your own words. What did you expect, and what actually happened?>
+Create a matching **SUMMARY.md** with these sections, in this order:
 
-## 5. What fixed it
+1. **In one sentence** — the purpose and outcome.
+2. **Topology at a glance** — the same verified Mermaid diagram.
+3. **What I changed** — two or three short, plain-language steps.
+4. **What I verified** — actual results and any testing limits.
+5. **What went wrong and how I fixed it** — brief and factual.
+6. **Open the files** — link to the technical README and the real `.pkt` file.
 
-<The troubleshooting steps, in the order you took them. Which show/debug commands pointed at the cause?>
+Explain any networking acronym the first time you use it. Avoid generic claims like "improved performance" without measurements. Keep the technical details in README.md and the quick explanation in SUMMARY.md.
 
-1.
-2.
-3.
-
-## 6. Verification
-
-<Proof it works — ping output, show command results.>
-
-```
-<paste output>
-```
-
-## 7. Takeaway
-
-<The one thing you'll remember under exam pressure.>
+**Before publishing:** Replace placeholders, match the saved project and command outputs, verify every link, and do not imply a test passed if it was not performed.
