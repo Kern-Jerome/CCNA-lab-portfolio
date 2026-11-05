@@ -10,11 +10,11 @@ I build small networks, configure Cisco devices, test whether they work, and doc
 
 | Lab | The problem I solved | Explore |
 | --- | --- | --- |
-| **01 — Connect two departments** | Keep Sales and HR on separate networks while allowing communication through a router. | [Diagram & simple explanation](labs/01-router-on-a-stick-inter-vlan-routing/SUMMARY.md) · [Technical details](labs/01-router-on-a-stick-inter-vlan-routing/README.md) |
-| **02 — Prevent network loops** | Add backup connections between switches without letting traffic circulate endlessly. | [Diagram & simple explanation](labs/02-stp-root-bridge-and-loop-prevention/SUMMARY.md) · [Technical details](labs/02-stp-root-bridge-and-loop-prevention/README.md) |
-| **03 — Control network access** | Block one specific computer's ping traffic while allowing the other tested traffic. | [Diagram & simple explanation](labs/03-extended-acls/SUMMARY.md) · [Technical details](labs/03-extended-acls/README.md) |
-| **04 — Keep a switch connection available** | Combine two cables into one logical connection and verify it stays up when one member is disabled. | [Diagram & simple explanation](labs/04-etherchannel/SUMMARY.md) · [Technical details](labs/04-etherchannel/README.md) |
-| **05 — Route traffic between networks** | Configure IPv4 and IPv6 routing, then troubleshoot why a router wasn't learning a route automatically. | [Diagram & simple explanation](labs/05-static-routing-and-ospf/SUMMARY.md) · [Technical details](labs/05-static-routing-and-ospf/README.md) |
+| **01 — Connect two departments** · Router-on-a-Stick, Inter-VLAN Routing | Keep Sales and HR on separate networks while allowing communication through a router. | [Diagram & simple explanation](labs/01-router-on-a-stick-inter-vlan-routing/SUMMARY.md) · [Technical details](labs/01-router-on-a-stick-inter-vlan-routing/README.md) |
+| **02 — Prevent network loops** · Spanning Tree (STP) | Add backup connections between switches without letting traffic circulate endlessly. | [Diagram & simple explanation](labs/02-stp-root-bridge-and-loop-prevention/SUMMARY.md) · [Technical details](labs/02-stp-root-bridge-and-loop-prevention/README.md) |
+| **03 — Control network access** · Extended ACLs | Block one specific computer's ping traffic while allowing the other tested traffic. | [Diagram & simple explanation](labs/03-extended-acls/SUMMARY.md) · [Technical details](labs/03-extended-acls/README.md) |
+| **04 — Keep a switch connection available** · EtherChannel (LACP) | Combine two cables into one logical connection and verify it stays up when one member is disabled. | [Diagram & simple explanation](labs/04-etherchannel/SUMMARY.md) · [Technical details](labs/04-etherchannel/README.md) |
+| **05 — Route traffic between networks** · Static Routing & OSPF | Configure IPv4 and IPv6 routing, then troubleshoot why a router wasn't learning a route automatically. | [Diagram & simple explanation](labs/05-static-routing-and-ospf/SUMMARY.md) · [Technical details](labs/05-static-routing-and-ospf/README.md) |
 
 ## How to read each project
 
