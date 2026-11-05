@@ -14,7 +14,7 @@ flowchart LR
   s2 ---|"Fa0/5 ↔ Fa0/2"| s3
 ```
 
-**How I'd explain this to a recruiter (about 20 seconds):** I combined two switch cables into one logical EtherChannel using LACP. I verified that both cables joined the bundle and that it stayed up when one cable was shut down. I also tested how Spanning Tree chose a backup route when a separate switch link failed.
+**How I'd explain this network (about 20 seconds):** I combined two switch cables into one logical EtherChannel using LACP. I verified that both cables joined the bundle and that it stayed up when one cable was shut down. I also tested how Spanning Tree chose a backup route when a separate switch link failed.
 
 **Reading the diagram:** The double line is ONE logical Port-channel (Po1) made of two physical links: S1 Fa0/1 ↔ S2 Fa0/1 and S1 Fa0/4 ↔ S2 Fa0/6. In the verified normal VLAN 10 STP state, Po1 was alternate/blocked on S2; it became forwarding after S2's direct link to S3 failed. Existing PCs are omitted for readability.
 
