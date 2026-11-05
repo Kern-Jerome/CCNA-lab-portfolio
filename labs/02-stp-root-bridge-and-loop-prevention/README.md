@@ -5,6 +5,16 @@
 **Protocol observed:** Per-VLAN Spanning Tree (PVST), IEEE 802.1D STP (`spanning-tree mode pvst`; `protocol ieee`)  
 **Lab file:** [Lab 02 STP Root Bridge and Loop Prevention.pkt](./Lab%2002%20STP%20Root%20Bridge%20and%20Loop%20Prevention.pkt)
 
+## Quick overview
+
+**The problem:** Extra switch cables provide a backup path but can create traffic loops.
+
+**What I built:** I used Spanning Tree Protocol (STP) to block a redundant path and tested how it changed during a planned link failure.
+
+**Verified result:** Switch outputs confirmed the expected root, blocked, and forwarding ports. No PC-ping failover time was measured.
+
+**Short version:** [Read the diagram and plain-language summary](./SUMMARY.md). The sections below contain the detailed configuration and troubleshooting evidence.
+
 ## Topology at a glance
 
 ```mermaid
