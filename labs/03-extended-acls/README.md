@@ -21,7 +21,7 @@ flowchart LR
   s1 ---|"802.1Q trunk"| r1
 ```
 
-**How I'd explain this to a recruiter (about 20 seconds):** I placed a precise traffic-filtering rule on the router. During the test, one Sales PC was blocked from pinging one HR PC, while another Sales PC could still reach it. I verified the permit and deny results and then cleanly removed the ACL assignment.
+**How I'd explain this network (about 20 seconds):** I placed a precise traffic-filtering rule on the router. During the test, one Sales PC was blocked from pinging one HR PC, while another Sales PC could still reach it. I verified the permit and deny results and then cleanly removed the ACL assignment.
 
 **Reading the diagram:** This shows the physical VLAN topology and where ACL 180 was applied during the test. It blocked only ICMP from 192.168.10.2 to 192.168.20.2; the ACL assignment was removed at the end of the lab. The intentionally unused PC1 is omitted.
 
