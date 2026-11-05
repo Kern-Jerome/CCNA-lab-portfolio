@@ -23,7 +23,7 @@ flowchart LR
   s1 ---|"802.1Q trunk<br/>VLANs 10 and 20"| r1
 ```
 
-**How I'd explain this to a recruiter (about 20 seconds):** I separated Sales and HR into two VLANs and connected them through one router interface using VLAN tags. Each department has its own gateway, and I verified that PCs in different VLANs could communicate through the router.
+**How I'd explain this network (about 20 seconds):** I separated Sales and HR into two VLANs and connected them through one router interface using VLAN tags. Each department has its own gateway, and I verified that PCs in different VLANs could communicate through the router.
 
 **Reading the diagram:** Solid lines represent physical connections. The two switch-to-switch and switch-to-router links carry both VLANs; a PC's access port belongs to only one VLAN.
 
