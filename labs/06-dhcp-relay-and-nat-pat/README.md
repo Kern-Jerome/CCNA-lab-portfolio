@@ -2,7 +2,7 @@
 
 **Completed:** November 6, 2026  
 **Platform:** Cisco Packet Tracer / Cisco IOS  
-**Project file:** `Lab 06 DHCP Relay and NAT PAT.pkt` (upload to this folder separately)  
+**Project file:** [Lab 06 DHCP Relay and NAT PAT.pkt](./Lab%2006%20DHCP%20Relay%20and%20NAT%20PAT.pkt)  
 **Plain-language overview:** [SUMMARY.md](./SUMMARY.md)
 
 ## Quick overview
@@ -169,6 +169,6 @@ Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
 
 ## Evidence and project-file status
 
-The verification evidence comes from CLI and PC outputs captured during the guided lab. The supplied Packet Tracer project is a proprietary binary and was not independently parsed to inspect every stored device configuration. Add **`Lab 06 DHCP Relay and NAT PAT.pkt`** to this directory so the published project can be opened in Packet Tracer.
+The verification evidence comes from CLI and PC outputs captured during the guided lab. The supplied Packet Tracer project is a proprietary binary and was not independently parsed to inspect every stored device configuration. The **[Lab 06 Packet Tracer project](./Lab%2006%20DHCP%20Relay%20and%20NAT%20PAT.pkt)** is included in this directory and can be opened in Packet Tracer.
 
 This is a self-directed training simulation, not a production deployment.
