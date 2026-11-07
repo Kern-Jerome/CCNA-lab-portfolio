@@ -55,6 +55,6 @@ This uses Packet Tracer and a **private** outside IPv4 address for demonstration
 ## Open the files
 
 - [Technical write-up: commands and verification](./README.md)
-- **Packet Tracer file:** `Lab 06 DHCP Relay and NAT PAT.pkt` — to be added to this folder
+- [Open the Packet Tracer project](./Lab%2006%20DHCP%20Relay%20and%20NAT%20PAT.pkt)
 
 These are self-directed Cisco learning exercises, not a production network.
