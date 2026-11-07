@@ -3,7 +3,7 @@
 **Completed:** November 6, 2026  
 **Platform:** Cisco Packet Tracer / Cisco IOS  
 **Project file:** [Lab 06 DHCP Relay and NAT PAT.pkt](./Lab%2006%20DHCP%20Relay%20and%20NAT%20PAT.pkt)  
-**Plain-language overview:** [SUMMARY.md](./SUMMARY.md)
+**Plain-language summary:** [SUMMARY.md](./SUMMARY.md)
 
 ## Quick overview
 
@@ -136,7 +136,7 @@ OSPF first showed a temporary `2WAY/DROTHER` neighbor state during convergence. 
 R1 also had the expected OSPF-learned remote LAN route:
 
 ```text
-O 192.168.20.0 [110/2] via 10.0.12.2, GigabitEthernet0/0/0
+O 192.168.20.0/24 [110/2] via 10.0.12.2, GigabitEthernet0/0/0
 ```
 
 Final PC1 verification after reopening:
