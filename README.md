@@ -2,7 +2,7 @@
 
 **Hands-on Cisco Packet Tracer projects** | Studying for the CCNA (target: December 2026)
 
-I build small networks, configure Cisco devices, test whether they work, and document what I learned. Each project includes an easy-to-follow diagram, real test results, and, when uploaded, the saved Packet Tracer file.
+I build small networks, configure Cisco devices, test whether they work, and document what I learned. Each project includes an easy-to-follow diagram, real test results, and the saved Packet Tracer file.
 
 **Start here:** Choose a lab below. Open **Diagram & simple explanation** to understand the setup without needing to know Cisco commands. Open **Technical details** for configurations, troubleshooting, and evidence.
 
@@ -23,7 +23,7 @@ I build small networks, configure Cisco devices, test whether they work, and doc
 - **Problem and solution:** What I was trying to make the network do, in everyday language.
 - **Proof:** Actual ping results or device status from the test—not just a claim that it worked.
 - **Troubleshooting:** What failed, how I investigated, and what changed.
-- **Technical details and project file:** Cisco configuration and the editable `.pkt` simulation when included. Lab 06's `.pkt` upload is still pending.
+- **Technical details and project file:** Cisco configuration and the editable `.pkt` simulation.
 
 ### A few useful terms
 
