@@ -17,7 +17,7 @@ flowchart LR
 
 **How to read it:** PC1 and PC2 are on different local networks, joined by routers R1 and R2. The middle link is the **WAN connection**, not an EtherChannel. OSPF is used for IPv4 in the final state; IPv6 still uses static routes.
 
-## What I changed
+## What I built
 
 - Assigned addresses to two routers and two PCs, then configured static routes to the opposite LAN.
 - Added IPv6 routes and corrected a PC's default gateway (the router address used to reach other networks).

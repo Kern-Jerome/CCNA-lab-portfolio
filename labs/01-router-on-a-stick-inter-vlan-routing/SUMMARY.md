@@ -21,7 +21,7 @@ flowchart LR
 
 **How to read it:** Each line is a cable. A VLAN is a logical group of devices; the shared switch-to-router links carry traffic for both groups.
 
-## What I changed
+## What I built
 
 - Created two virtual networks (VLAN 10 for Sales and VLAN 20 for HR).
 - Configured the switch connections to carry both VLANs and the router to act as each department's gateway.
