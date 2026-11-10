@@ -2,7 +2,7 @@
 
 **Completed:** November 9, 2026  
 **Platform:** Cisco Packet Tracer / Cisco IOS  
-**Project file:** `Lab 07 Switch Security and SSH.pkt` — saved locally; GitHub upload pending  
+**Project file:** [Lab 07 Switch Security and SSH.pkt](./Lab%2007%20Switch%20Security%20and%20SSH.pkt)  
 **Plain-language summary:** [SUMMARY.md](./SUMMARY.md)
 
 ## Quick overview
@@ -246,8 +246,8 @@ The full workflow followed **Observation → Analysis → Verification → Resol
 
 ## Saved configuration and project-file status
 
-Both S1 and R1 were saved successfully with `copy running-config startup-config`; each returned `[OK]`. The Packet Tracer project was saved locally as `Lab 07 Switch Security and SSH.pkt`.
+Both S1 and R1 were saved successfully with `copy running-config startup-config`; each returned `[OK]`. The Packet Tracer project was saved locally as `Lab 07 Switch Security and SSH.pkt` and uploaded to this GitHub directory.
 
-**GitHub upload still pending:** The `.pkt` file has not yet been added to this directory. The results above are based on actual CLI and PC outputs from the lab session; the saved binary has not been independently opened or reverified.
+**Project file verified:** [Open the saved Packet Tracer project](./Lab%2007%20Switch%20Security%20and%20SSH.pkt). GitHub lists the binary as 55,358 bytes, and its Git blob SHA matches the local file. The results above are based on actual CLI and PC outputs from the lab session; the uploaded simulation has not been independently reopened and reverified.
 
 This is a self-directed Cisco learning simulation, not a production deployment.
