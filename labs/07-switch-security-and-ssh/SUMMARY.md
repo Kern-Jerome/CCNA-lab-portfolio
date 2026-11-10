@@ -57,11 +57,11 @@ Switch security is about defining which ports and devices to trust, then checkin
 
 The DAI test **proved one legitimate ARP packet was permitted**. It did **not** include a forged ARP packet, so I am not claiming that I observed DAI block an actual ARP-spoofing attempt. The deliberately triggered and observed attack-like condition was a **port-security MAC violation**.
 
-The project was saved locally in Packet Tracer. The `.pkt` file still needs to be uploaded to GitHub.
+The Packet Tracer project is saved locally and uploaded to this GitHub folder. The file was not independently reopened for another validation run.
 
 ## Open the files
 
 - [Technical write-up: commands, device output, and troubleshooting](./README.md)
-- Packet Tracer project: `Lab 07 Switch Security and SSH.pkt` (GitHub upload pending)
+- [Open the saved Packet Tracer project](./Lab%2007%20Switch%20Security%20and%20SSH.pkt)
 
 This is a self-directed training simulation, not a production network.
