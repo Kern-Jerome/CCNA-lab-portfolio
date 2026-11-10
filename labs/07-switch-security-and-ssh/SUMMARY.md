@@ -21,7 +21,7 @@ All devices are on VLAN 10 (`192.168.10.0/24`).
 
 A working network isn't necessarily a protected network. An unauthorized device could appear on a switch port, a rogue DHCP server could send address information, or remote management might use an insecure protocol.
 
-## What I built
+## What I changed
 
 - Configured R1 to hand out IP addresses to the two PCs.
 - Gave S1 a management address of `192.168.10.2`.
